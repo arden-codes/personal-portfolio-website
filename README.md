@@ -12,7 +12,6 @@ A responsive personal portfolio website built from scratch with vanilla HTML, CS
 
 - **Responsive design** — adapts across desktop, tablet, and mobile breakpoints
 - **Light/dark theme switcher** — toggle persists across visits via `localStorage`
-- **Smart sticky navbar** — stays pinned while scrolling, hides on scroll-down and reappears on scroll-up
 - **Mobile hamburger menu** — animated toggle with a slide-down navigation panel
 - **Dynamic project cards** — rendered from a single JS data array, so adding a new project is a one-line change
 - **Working contact form** — submits via [Formspree](https://formspree.io/) with inline success/error feedback, no page reload
