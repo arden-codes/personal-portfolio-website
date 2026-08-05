@@ -2,7 +2,7 @@
 
 A responsive personal portfolio website built from scratch with vanilla HTML, CSS, and JavaScript. Features a sticky auto-hiding navbar, light/dark theme switcher, a JS-driven project showcase, and a working contact form.
 
-**Live Demo:** [Add your deployed link here]
+**Live Demo:** https://ardencodes.netlify.app/
 **Repository:** https://github.com/arden-codes/portfolio-project
 
 ---
