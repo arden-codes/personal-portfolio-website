@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore Arden Codes' portfolio featuring modern web development projects, technical skills, and contact information.">
+
+    <title>Arden Codes | Web Developer Portfolio</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <!-- hypertext reference -->
+
+    <script src="js/main.js" defer></script>
+    <!-- Defer tells the browser to download script in the bg without pausing the HTML parsing -->
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul> <!-- Unordered List -->
+                    <li> <!-- List Item -->
+                        <a href="#hero">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="theme-switcher">
+                <label for="theme-toggle" class="switch-label">
+                    <input type="checkbox" id="theme-toggle" class="switch-checkbox"
+                        aria-label="Toggle theme between light and dark">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+
+                <h1>arden-codes;</h1>
+
+                <p class="hero-subtitle">Creative Web Developer & UI/UX Enthusiast</p>
+
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+
+                <div class="about-content">
+
+                    <div class="about-image">
+                        <img src="images/profile-picture.jpg" alt="Arden Codes logo">
+                    </div>
+
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm Arden, a passionate and creative web developer based in India. My journey into
+                            web development began with a fascination for how elegant design and powerful technology comes together to create engaging digital experiences.
+                        </p>
+                        <p>
+                            I specialize in front-end development with a strong command of HTML, CSS, and JavaScript.
+                            I love bringing ideas to life in the browser and am always eager to learn new technologies
+                            and frameworks to enhance my skills. When I'm not coding, you can find me exploring the
+                            outdoors, reading a good article, watching movies or working on personal projects that challenge me to think outside the box.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>My Projects</h2>
+
+                <div class="projects-container">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>
+                    Have a project in mind or want to collaborate? I'd love to hear from you!
+                </p>
+
+                <form id="contact-form" action="https://formspree.io/f/mkjwwalj" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+
+                    <div id="form-status"></div>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Arden Codes. All rights reserved.</p>
+            <ul>
+                <li><a href="https://github.com/arden-codes" target="_blank"
+                        aria-label="View my profile on GitHub">GitHub</a></li>
+                <!-- targer="_blank"  tells the browser to open a linked document in a new tab or a new window -->
+                <li>
+                    <a href="https://www.linkedin.com/in/arden-codes/" target="_blank"
+                        aria-label="Connect with me on LinkedIn">LinkedIn</a>
+                </li>
+                <li>
+                    <a href="https://x.com/ardencodes" target="_blank"
+                        aria-label="Connect with me on X (formerly Twitter)">X
+                        (Twitter)</a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/arden.codes/" target="_blank"
+                        aria-label="View my profile on Instagram">Instagram</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

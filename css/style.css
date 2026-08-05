@@ -1,0 +1,752 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff;
+
+    --text-color: #212529;
+    --text-color-light: #495057;
+
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --font-size-base: 1rem;
+    /* Typically defaults to 16px */
+    --line-height-base: 1.5;
+    /* Base line height for improved readability. It's unitless, meaning it's a multiplier of the font size. */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+
+
+    --spacing-unit: 1rem;
+    /* A base unit for consistent spacing (margins, padding). We can use multiples of this unit. */
+    --container-width: 1140px;
+    --border-radius: 0.25rem;
+}
+
+html[data-theme='dark'] {
+    /* =======================================
+     COLOR PALETTE - DARK THEME
+     ======================================== */
+    --primary-color: #007bff;
+    --secondary-color: #adb5bd;
+
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+
+    --text-color: #e9ecef;
+    --text-color-light: #ced4da;
+
+
+    --border-color: #343a40;
+    --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+
+/*
+  ========================================
+  BASE STYLE
+  ========================================
+*/
+/* Universal Selector (*) */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*
+  Create a root stacking context. This is a modern best practice to prevent z-index issues with elements like modals or dropdowns.
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+
+    color: var(--text-color);
+    background-color: var(--background-color);
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.container {
+    width: min(100%, var(--container-width));
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/*
+  ========================================
+  HEADER & NAVIGATION
+  ========================================
+*/
+
+header {
+    background-color: var(--surface-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+
+    min-height: 2.5rem;
+
+    display: flex;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    list-style: none;
+}
+
+header nav ul li a {
+    display: block;
+
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: var(--font-weight-bold);
+    padding: 0.5rem;
+
+    transition: color 0.3s ease-in-out;
+}
+
+/*
+  ========================================
+  MENU TOGGLE (HAMBURGER)
+  ========================================
+  Styles for the mobile navigation toggle button.
+*/
+.menu-toggle {
+    display: none;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--text-color-light);
+    border-radius: 3px;
+
+    transition: all 0.3s ease-in-out;
+}
+
+/*
+  ========================================
+  THEME SWITCHER
+  ========================================
+  Styles for the light/dark mode toggle switch.
+*/
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.switch-label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.switch-checkbox {
+    /* 
+    This is a common accessibility-friendly technique to hide an element visually
+    but keep it available to screen readers and the browser's form submission logic.
+    We hide it because we're creating our own custom visual representation.
+  */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    /* This is the track of our switch. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #ccc;
+    /* A default gray for the track */
+    border-radius: 26px;
+    /* Makes the track pill-shaped */
+    transition: background-color 0.4s;
+}
+
+.slider::before {
+    /* This pseudo-element is the "thumb" or the movable part of the switch. */
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    /* Makes the thumb a perfect circle */
+    transition: transform 0.4s;
+}
+
+.switch-checkbox:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+.switch-checkbox:checked+.slider::before {
+    transform: translateX(24px);
+}
+
+/*
+  ========================================
+  HERO SECTION 
+  ========================================
+*/
+#hero {
+    /* 
+    To make the hero section feel significant, we give it a minimum height.
+    '90vh' means 90% of the viewport's height. This ensures it fills most
+    of the screen on any device, creating an immersive first impression.
+    */
+    min-height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: calc(var(--spacing-unit)*2) 0;
+}
+
+#hero .container {
+    text-align: center;
+}
+
+#hero h1 {
+    font-family: "Courier New", monospace, "Arial";
+    font-size: 3.5rem;
+    /* ~56px */
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-unit);
+}
+
+#hero .hero-subtitle {
+    font-family: "Courier New", monospace, "Arial";
+    font-size: 1.5rem;
+    /* ~24px */
+    margin-bottom: calc(var(--spacing-unit)*2);
+    color: var(--text-color-light);
+}
+
+#hero p:last-of-type {
+    /*
+    Constrain the width of the final introductory paragraph to ensure it
+    remains easily readable on very wide screens.
+   */
+    max-width: 600px;
+    /* margin: 0 auto; will center the paragraph block if its max-width is met. */
+    margin: 0 auto;
+}
+
+/*
+  ========================================
+  ABOUT SECTION
+  ========================================
+*/
+
+#about {
+    padding: calc(var(--spacing-unit)*4) 0;
+}
+
+#about h2 {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit)*3);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 4);
+}
+
+.about-image {
+    flex: 1;
+    max-width: 300px;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.about-text {
+    flex: 2;
+}
+
+.about-text p {
+    margin-bottom: var(--spacing-unit);
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+/*
+  ========================================
+  PROJECTS SECTION
+  ========================================
+*/
+
+#projects {
+    padding: calc(var(--spacing-unit) * 4) 0;
+    background-color: var(--background-color);
+}
+
+#projects h2 {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--spacing-unit)* 2);
+}
+
+
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--surface-color);
+
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+
+    box-shadow: 0 4px 8px var(--shadow-color);
+
+    /* 
+        Crucial for design: This clips anything that tries to "spill out" of the card.
+        This ensures that the sharp corners of our <img> are clipped to match the card's rounded corners.
+    */
+    overflow: hidden;
+
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.project-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+
+    /* 
+    'display: block' removes any potential extra space below the image.
+    */
+    display: block;
+}
+
+.project-info {
+    padding: calc(var(--spacing-unit) * 1.5);
+}
+
+.project-info h3 {
+    margin-bottom: var(--spacing-unit);
+}
+
+.project-links {
+    padding: 0 calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 1.5);
+    display: flex;
+    gap: var(--spacing-unit);
+
+    margin-top: auto;
+}
+
+.project-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+    font-size: 14px;
+    border-radius: var(--border-radius);
+
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.project-links a:last-child {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.project-links a:hover,
+.project-links a:last-child:hover {
+    transform: scale(0.95);
+}
+
+/*
+  ========================================
+  CONTACT SECTION
+  ========================================
+*/
+#contact {
+    padding: calc(var(--spacing-unit) * 4) 0;
+}
+
+/* #contact .container > p { } - Selects only the direct children of .container. */
+#contact .container>h2,
+#contact .container>p {
+    /* Center the section's introductory text. */
+    text-align: center;
+}
+
+
+#contact .container>p {
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+#contact form {
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+#contact label {
+    display: block;
+
+    font-weight: var(--font-weight-bold);
+
+    margin-bottom: 0.5rem;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 0.75);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+
+    background-color: var(--surface-color);
+
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--text-color);
+
+    transition: border-color 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out,
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out;
+}
+
+#contact textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+#contact input[type="text"]:focus,
+#contact input[type="email"]:focus,
+#contact textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+
+}
+
+#contact button[type="submit"] {
+    display: block;
+    width: 100%;
+
+    padding: var(--spacing-unit);
+
+    border: none;
+    border-radius: var(--border-radius);
+
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+
+    cursor: pointer;
+
+    transition: filter 0.2s ease-in-out;
+}
+
+#contact button[type="submit"]:hover {
+    /* The filter property is a modern way to change appearance. brightness(90%) slightly darkens the element. */
+    filter: brightness(90%);
+}
+
+#form-status {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: var(--font-weight-medium);
+
+    display: none;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#form-status .success {
+    display: block;
+    /* Make the element visible */
+    opacity: 1;
+    /* Fade it in */
+    transform: translateY(0);
+    /* Slide it down to its final position */
+    background-color: #d1e7dd;
+    /* A pleasant, light green */
+    color: #0f5132;
+    /* A dark green for good contrast */
+    border: 1px solid #badbcc;
+}
+
+#form-status.error {
+    display: block;
+    /* Make the element visible */
+    opacity: 1;
+    /* Fade it in */
+    transform: translateY(0);
+    /* Slide it down to its final position */
+    background-color: #f8d7da;
+    /* A standard light red for errors */
+    color: #842029;
+    /* A dark red for good contrast */
+    border: 1px solid #f5c2c7;
+}
+
+html[data-theme='dark'] #form-status.success {
+    background-color: #0f5132;
+    /* Darker green background */
+    color: #d1e7dd;
+    /* Lighter green text */
+    border-color: #146c43;
+}
+
+html[data-theme='dark'] #form-status.error {
+    background-color: #842029;
+    /* Darker red background */
+    color: #f8d7da;
+    /* Lighter red text */
+    border-color: #9b2a34;
+}
+
+/*
+  ========================================
+  FOOTER
+  ========================================
+*/
+
+footer {
+    background-color: var(--surface-color);
+
+    padding: calc(var(--spacing-unit) * 2) 0;
+
+
+    border-top: 1px solid var(--border-color);
+
+    color: var(--text-color-light);
+
+
+    text-align: center;
+
+    transition: background-color 0.3s ease-in-out, border-top-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+
+
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+}
+
+footer ul {
+    display: flex;
+
+    gap: var(--spacing-unit);
+
+    list-style: none;
+}
+
+footer ul li a {
+    text-decoration: none;
+
+    color: var(--text-color-light);
+
+    transition: color 0.2s ease-in-out;
+}
+
+footer ul li a:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 990px) {
+    .project-image {
+        aspect-ratio: 16/9;
+    }
+}
+
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.8rem;
+    }
+
+    #hero .hero-subtitle {
+        font-size: 1.25rem;
+        /* Down from 1.5rem */
+    }
+
+    .about-content {
+        /* Change the flex-direction from the default 'row' to 'column'. */
+        flex-direction: column;
+
+        /* Increase the gap to provide vertical space between the stacked items. */
+        gap: calc(var(--spacing-unit) * 3);
+    }
+
+    .about-image {
+        max-width: 250px;
+        margin: 0 auto;
+        /* Center the image container */
+    }
+
+    footer .container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-unit);
+    }
+
+    header nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+    
+    header nav {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        background-color: var(--surface-color);
+        box-shadow: 0 4px 8px var(--shadow-color);
+    }
+
+    header nav.nav-open {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    header nav ul li a {
+        padding: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .project-links a {
+        padding: 0.75rem 1.25rem;
+        /* Increased from 0.5rem 1rem */
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    #hero h1 {
+        font-size: 2.2rem;
+        /* Down from 2.8rem on tablet */
+    }
+
+    #hero .hero-subtitle {
+        font-size: 1.1rem;
+        /* Down from 1.25rem on tablet */
+    }
+
+    #about,
+    #projects,
+    #contact {
+        padding: calc(var(--spacing-unit) * 2) 0;
+    }
+
+
+
+
+}
