@@ -1,5 +1,12 @@
 const projects = [
     {
+        title: "Tic Tac Toe",
+        description: "A classic Tic-Tac-Toe game built with vanilla HTML, CSS, and JavaScript. Play against a computer opponent or challenge a friend in two-player mode.",
+        imageUrl: "./images/tic-tac-toe.jpg",
+        liveUrl: "https://tictactoe-byarden.netlify.app/",
+        codeUrl: "https://github.com/arden-codes/tic-tac-toe"
+    },
+    {
         title: "Todo List",
         description: "A clean, minimal task management web app built with Flask. Designed to help you stay organised without the clutter — just add your tasks, track them, and get things done.",
         imageUrl: "./images/todo-list.jpg",
