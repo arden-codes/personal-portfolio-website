@@ -7,6 +7,13 @@ const projects = [
         codeUrl: "https://github.com/arden-codes/tic-tac-toe"
     },
     {
+        title: "Quiz Game",
+        description: "An interactive trivia quiz app built with vanilla HTML, CSS, and JavaScript. Choose a category, difficulty, and number of questions, then test your knowledge with multiple-choice questions powered by the Open Trivia Database API.",
+        imageUrl: "./images/quiz-game.jpg",
+        liveUrl: "https://quizgame-byarden.netlify.app/",
+        codeUrl: "https://github.com/arden-codes/quiz-game"
+    },
+    {
         title: "Todo List",
         description: "A clean, minimal task management web app built with Flask. Designed to help you stay organised without the clutter — just add your tasks, track them, and get things done.",
         imageUrl: "./images/todo-list.jpg",
