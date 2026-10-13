@@ -31,7 +31,7 @@ const projects = [
     {
         title: "Portfolio Project (This Website!)",
         description: "A responsive personal portfolio built from scratch using HTML, CSS, and vanilla JavaScript. Features a dynamic theme switcher and is populated by a JavaScript data structure.",
-        imageUrl: "./images/profile-picture.jpg",
+        imageUrl: "./images/portfolio.jpg",
         liveUrl: "https://ardencodes.netlify.app/",
         codeUrl: "https://github.com/arden-codes/personal-portfolio-website"
     }
